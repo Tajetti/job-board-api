@@ -1,7 +1,6 @@
 package br.com.alvaro.GestaoVagas.Modules.Candidate.Controllers;
 
 import br.com.alvaro.GestaoVagas.Modules.Candidate.Entity.CandidateEntity;
-import br.com.alvaro.GestaoVagas.Modules.Candidate.Repository.CandidateRepository;
 import br.com.alvaro.GestaoVagas.Modules.Candidate.UseCases.CreateCandidate;
 import jakarta.validation.Valid;
 
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/candidate")
 public class CandidateController {
-
-    @Autowired
-    private CandidateRepository repository;
 
     @Autowired
     private CreateCandidate create;
