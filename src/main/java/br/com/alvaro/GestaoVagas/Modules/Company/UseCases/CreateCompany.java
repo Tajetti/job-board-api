@@ -1,12 +1,10 @@
 package br.com.alvaro.GestaoVagas.Modules.Company.UseCases;
 
-import br.com.alvaro.GestaoVagas.Modules.Candidate.Exception.UserFoundedException;
+import br.com.alvaro.GestaoVagas.Modules.Exception.UserFoundedException;
 import br.com.alvaro.GestaoVagas.Modules.Company.Entities.CompanyEntity;
 import br.com.alvaro.GestaoVagas.Modules.Company.Repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CreateCompany {
