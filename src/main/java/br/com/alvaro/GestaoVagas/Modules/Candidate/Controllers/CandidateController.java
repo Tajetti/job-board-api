@@ -18,7 +18,7 @@ public class CandidateController {
     @Autowired
     private CreateCandidate create;
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<Object> create(@Valid @RequestBody CandidateEntity candidateEntity) {
       try {
           var result =  this.create.execute(candidateEntity);
