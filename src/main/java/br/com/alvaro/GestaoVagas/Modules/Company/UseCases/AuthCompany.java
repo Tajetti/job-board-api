@@ -1,5 +1,8 @@
 package br.com.alvaro.GestaoVagas.Modules.Company.UseCases;
 
+import java.time.Duration;
+import java.time.Instant;
+
 import javax.naming.AuthenticationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +47,9 @@ public class AuthCompany
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
         var token = JWT.create().withIssuer("javagas")
-        .withSubject(company.getId().toString())
-        .sign(algorithm);
+            .withExpiresAt(Instant.now().plus(Duration.ofHours(2)))
+            .withSubject(company.getId().toString())
+            .sign(algorithm);
         return token;
 
     }
