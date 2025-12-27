@@ -1,7 +1,7 @@
 package br.com.alvaro.GestaoVagas.Modules.Candidate.UseCases;
 
+import br.com.alvaro.GestaoVagas.Exception.UserFoundedException;
 import br.com.alvaro.GestaoVagas.Modules.Candidate.Entity.CandidateEntity;
-import br.com.alvaro.GestaoVagas.Modules.Exception.UserFoundedException;
 import br.com.alvaro.GestaoVagas.Modules.Candidate.Repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

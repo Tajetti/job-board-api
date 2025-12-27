@@ -1,4 +1,4 @@
-package br.com.alvaro.GestaoVagas.Modules.Exception;
+package br.com.alvaro.GestaoVagas.Exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

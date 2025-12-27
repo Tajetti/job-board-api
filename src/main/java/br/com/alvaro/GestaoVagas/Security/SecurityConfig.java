@@ -1,4 +1,4 @@
-package br.com.alvaro.GestaoVagas.Modules.Security;
+package br.com.alvaro.GestaoVagas.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

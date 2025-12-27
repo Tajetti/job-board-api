@@ -1,4 +1,4 @@
-package br.com.alvaro.GestaoVagas.Modules.Exception;
+package br.com.alvaro.GestaoVagas.Exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
