@@ -1,10 +1,14 @@
 package br.com.alvaro.GestaoVagas.Modules.Company.Controller;
 
+import br.com.alvaro.GestaoVagas.Modules.Company.DTO.DTOcreatejob;
 import br.com.alvaro.GestaoVagas.Modules.Company.Entities.JobEntity;
 import br.com.alvaro.GestaoVagas.Modules.Company.UseCases.CreateJob;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +22,17 @@ public class JobController {
     private CreateJob create;
 
     @PostMapping("/")
-    public ResponseEntity<Object> create(@Valid @RequestBody JobEntity job) {
-        try{
-            var result = create.execute(job);
-            return ResponseEntity.ok().body(result);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public JobEntity create(@Valid @RequestBody DTOcreatejob jobDTO, HttpServletRequest request) {
+        var companyId = request.getAttribute("company_id");
+        
+        //job.setCompanyId(UUID.fromString(companyId.toString()));
+        var job = JobEntity.builder()
+            .companyId(UUID.fromString(companyId.toString()))
+            .benefits(jobDTO.getBenefits())
+            .description(jobDTO.getDescription())
+            .level(jobDTO.getLevel())
+            .build();
+
+        return this.create.execute(job);
     }
 }
