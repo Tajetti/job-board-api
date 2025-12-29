@@ -17,9 +17,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 
 import br.com.alvaro.GestaoVagas.Modules.Candidate.DTO.AuthRequestCandidateDTO;
 import br.com.alvaro.GestaoVagas.Modules.Candidate.DTO.AuthResponseCandidateDTO;
-import br.com.alvaro.GestaoVagas.Modules.Candidate.Entity.CandidateEntity;
 import br.com.alvaro.GestaoVagas.Modules.Candidate.Repository.CandidateRepository;
-import jakarta.validation.Valid;
 
 @Service
 public class AuthCandidateUseCase {
@@ -48,19 +46,21 @@ public class AuthCandidateUseCase {
         }
 
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-        var expireIn = Instant.now().plus(Duration.ofMinutes(10));
+
+        var expireIn = Instant.now().plus(Duration.ofMinutes(2));
+
         var token = JWT.create()
-                    .withIssuer("javagas")
-                    .withSubject(candidate.getId().toString())
+                    .withIssuer("javagas") // emissor do token
+                    .withSubject(candidate.getId().toString()) 
                     .withClaim("roles", Arrays.asList("candidate"))
                     .withExpiresAt(expireIn)
                     .sign(algorithm);
-                    
-        var authResponseCandidateDTO = AuthResponseCandidateDTO.builder()
-            .access_token(token)
-            .expire_in(expireIn.toEpochMilli())
-            .build();
 
-        return authResponseCandidateDTO;
+        var authResponseCandidate = AuthResponseCandidateDTO.builder()
+                .access_token(token)
+                .expire_in(expireIn.toEpochMilli())
+                .build();
+
+        return authResponseCandidate;
     }
 }
