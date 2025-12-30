@@ -1,8 +1,8 @@
 package br.com.alvaro.GestaoVagas.Modules.Candidate.UseCases;
 
-import java.util.Arrays;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 import javax.naming.AuthenticationException;
 
@@ -52,7 +52,7 @@ public class AuthCandidateUseCase {
         var token = JWT.create()
                     .withIssuer("javagas") // emissor do token
                     .withSubject(candidate.getId().toString()) 
-                    .withClaim("roles", Arrays.asList("candidate"))
+                    .withClaim("roles", Arrays.asList("CANDIDATE"))
                     .withExpiresAt(expireIn)
                     .sign(algorithm);
 

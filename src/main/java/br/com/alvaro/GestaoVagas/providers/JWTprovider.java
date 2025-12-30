@@ -23,7 +23,7 @@ public class JWTprovider
             var subject = JWT.require(algorithm).build().verify(token).getSubject();
             return subject;
         } catch (JWTVerificationException e) {
-            e.printStackTrace();
+            // Invalid or expired token
             return ""; 
         }
     }    
