@@ -1,27 +1,29 @@
 package br.com.alvaro.GestaoVagas.Modules.Company.Controller;
 
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import br.com.alvaro.GestaoVagas.Modules.Company.DTO.DTOcreatejob;
 import br.com.alvaro.GestaoVagas.Modules.Company.Entities.JobEntity;
 import br.com.alvaro.GestaoVagas.Modules.Company.UseCases.CreateJob;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
-@RequestMapping("/job")
+@RequestMapping("/company/job")
 public class JobController {
 
     @Autowired
     private CreateJob create;
 
     @PostMapping("/")
+    @PreAuthorize("hasRole('COMPANY')")
     public JobEntity create(@Valid @RequestBody DTOcreatejob jobDTO, HttpServletRequest request) {
         var companyId = request.getAttribute("company_id");
         
